@@ -1,6 +1,0 @@
-"0","
-mammals <- read.dna(""mammals.dna"", format=""interleaved"")
-"
-"2","Warning: 无法打开文件'mammals.dna': No such file or directory"
-"2","Error in file(file, ""r"") : 无法打开链结
-"
