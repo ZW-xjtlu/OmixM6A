@@ -1,0 +1,17 @@
+# example.gtf
+The example.gtf file is obtained from UCSC hg19 GTF file.
+17 genes are sampled from chromosome 7 of hg19 GTF,
+the genomic range of the sampled genes are between 150671799 - 151042434.
+
+# Input1-3.bam, IP1-4.bam
+The BAM files are obtained from GEO study SRP012099.
+The SRR ids for the 3 Input samples are SRR456555,SRR456556,and SRR456557
+The SRR ids for the 4 IP samples are SRR456551,SRR456552,SRR456553,SRR456554
+
+The fastq files are downloaded from the GEO,
+and they are aligned with TopHat onto the human genome hg19.
+
+We trancate the resulting BAM files to keep the mapped reads only on the region of 150671799 - 151042434 on chromosome 7.
+
+# Input1-3.bam.bai, IP1-4.bam.bai
+The BAM file indexes are generated from the corresponding BAM files with Rsamtools::indexBam()

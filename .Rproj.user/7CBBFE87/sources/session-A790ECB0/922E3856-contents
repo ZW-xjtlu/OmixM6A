@@ -1,0 +1,25 @@
+---
+title: "Derivatives"
+author: "Zhen Wei"
+date: "2024-07-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+We could see that the difference between the PMFs is almost undetectable.
+
+The PMF of Poisson distribution is actually derived from the PMF of binomial distribution when the number of trials \(n \to \infty\) and the success probability \(\pi \to 0\); the proof is shown as the following.
+
+If \(X\sim binomial(\pi)\), then it has the PMF of:
+
+\[p_X(x;\pi)= \frac{n!}{x!(n-x)!} \pi^x(1-\pi)^{(1-x)}, \ \ \ x = 0, \cdots,n\] Set \(\lambda=n\pi\), then we have:
+
+\[ = \frac{n(n-1)\cdots(n-x+1)}{x!} \times \frac{\lambda^x}{n^x}(1-\frac{\lambda}{n})^{n-x}\] \[ = \frac{n}{n} \times \frac{n-1}{n} \cdots \frac{n-x+1}{n} \times \frac{\lambda^x}{x!}(1-\frac{\lambda}{n})^n(1-\frac{\lambda}{n})^{-x}\] When \(n\to\infty\) and \(\pi \to 0\), and from the fact that \(\underset{n\to\infty}{lim}(1-\lambda/n)^n=e^{-\lambda}\), the above terms become:
+
+\[\underset{n\to\infty}\longrightarrow 1 \times1 \cdots 1 \times \frac{\lambda^x}{x!}e^{-\lambda} \times 1 = \frac{\lambda^x}{x!}e^{-\lambda}\]
+

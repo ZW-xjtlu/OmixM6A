@@ -1,0 +1,32 @@
+---
+title: "ensemble"
+author: "Zhen Wei"
+date: "2024-06-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Combine scores
+
+```{r}
+gs <- read.csv("Final.csv")
+for(i in 1:5){
+CWX <- read.csv(paste0("CW", i,".csv"))
+gs[[paste0("CW", i)]] <- CWX$Grade[match(gs$ID.number, CWX$ID.number)] 
+}
+gs$CW3[is.na(gs$CW3)] <- 0
+gs$CW4[is.na(gs$CW4)] <- 0
+gs$CW4[17] <- 65
+gs$CW4[32] <- 97
+gs$CW5[is.na(gs$CW5)] <- 0
+cor(gs[,4:(4+5)])
+
+gs$Total <- 0.7*gs$Final + 0.3*(rowMeans(gs[,5:(4+5)]))
+gs$Ass1 <- (gs$CW1 + gs$CW2 + gs$CW3*0.5)/2.5
+gs$Ass2 <- (gs$CW4 + gs$CW5 + gs$CW3*0.5)/2.5
+write.csv(gs, "Grade.csv")
+```
+

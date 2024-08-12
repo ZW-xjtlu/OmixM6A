@@ -1,0 +1,13 @@
+Package: OmixM6A
+Type: Package
+Title: Model-based Site Calling and Normalization of Quantitative M6A Data in R
+Version: 0.4.0
+Author: Zhen Wei
+Maintainer: Zhen Wei <zhen.wei01@xjtlu.edu.cn>
+Description: The OmixM6A package offers a comprehensive suite of tools for the analysis and visualization of m6A omics data in R. It specializes in the classification and normalization of m6A methylation states within biological samples. Key features include the ability to fit various statistical models, such as zero-inflated beta-binomial mixtures, beta-binomial mixtures, binomial mixtures, and binomial-uniform mixtures, to m6A count data. The package efficiently handles both individual count vectors and complex SummarizedExperiment objects, providing versatility in data analysis. Core functionalities include calculating posterior probabilities of m6A modifications states, generating p-values and fdr. Additionally, the package offers robust visualization tools to compare model fits and assess the goodness of fit for different statistical models. Designed with efficiency in mind, the package allows for the analysis of large-scale m6A datasets, making it a useful tool for researchers in the field of epitranscriptome studies.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports: 
+    extraDistr, S4Vectors, SummarizedExperiment, ggplot2, MASS

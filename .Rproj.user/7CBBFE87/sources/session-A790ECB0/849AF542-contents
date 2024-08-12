@@ -1,0 +1,9 @@
+Wald_stat_chisq <- function(m,n,p){
+  p1h <- rbinom(1,m,p)/m
+  p2h <- rbinom(1,n,p)/n
+  ((p1h - p2h)^2)/((p1h*(1-p1h)/n)+(p2h*(1-p2h)/m))
+}
+
+hist(replicate(500, Wald_stat_chisq(30,20,0.5)))
+
+hist(rchisq(500,1))

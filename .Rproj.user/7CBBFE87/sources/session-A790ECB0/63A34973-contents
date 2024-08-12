@@ -1,0 +1,88 @@
+# OmixM6A
+
+**OmixM6A** offers a comprehensive suite of tools for the analysis and visualization of m6A omics data in R. The package specializes in the site calling, classification and normalization of m6A methylation states within biological samples, providing researchers with the tools needed to conduct high-level analysis in the field of epitranscriptomics.
+
+## Installation
+
+Install OmixM6A directly from GitHub:
+
+```r
+# Install devtools if you haven't already
+install.packages("devtools")
+
+# Install OmixM6A from GitHub
+devtools::install_github("your_github_username/OmixM6A")
+```
+
+## Overview
+
+OmixM6A provides:
+
+- **Advanced Statistical Models**: Fit a range of models, including zero-inflated beta-binomial mixtures, beta-binomial mixtures, binomial mixtures, and binomial-uniform mixtures, to m6A count data.
+- **Flexible Data Handling**: Efficiently analyze both individual count vectors and complex `SummarizedExperiment` objects, allowing for versatile data analysis workflows.
+- **Robust Classification and Normalization**: Accurately classify and normalize m6A methylation states, calculating posterior probabilities, p-values, and false discovery rates (FDR).
+- **High-Level Visualization**: Generate visualizations to compare model fits, assess goodness of fit, and interpret the results of different statistical models.
+- **Scalability**: Designed for large-scale m6A datasets, ensuring efficient processing and analysis for epitranscriptome research.
+
+## Key Features
+
+- **Posterior Probability Calculation**: Accurately estimate the posterior probabilities of m6A modification states across biological samples.
+- **P-Value and FDR Calculation**: Generate p-values and false discovery rates to assess the statistical significance of m6A sites.
+- **Model Comparison and Visualization**: Visual tools to compare and evaluate the fit of various statistical models, enhancing interpretability and decision-making.
+- **Versatile Data Processing**: Handle both simple data structures and complex multi-sample datasets within `SummarizedExperiment` objects, making the package adaptable to different research needs.
+
+## Usage
+
+### 1. Load the Package
+
+```r
+library(OmixM6A)
+```
+
+### 2. Fit Statistical Models
+
+```r
+# Example usage of fitting a BBmix model for m6A site calling
+results <- bbmix_model(input_data, params)
+```
+
+### 3. Normalize m6A Data
+
+```r
+# Normalize m6A data across different techniques
+normalized_data <- normalize_m6A(input_data)
+```
+
+### 4. Visualize Model Fits
+
+```r
+# Generate visualizations to compare model fits
+plot_model_fits(results)
+```
+
+### 5. Large-Scale Data Analysis
+
+```r
+# Efficiently process large m6A datasets
+large_scale_results <- analyze_large_scale_m6A(data)
+```
+
+## Documentation
+
+Comprehensive documentation for each function is available within the package. Access it using:
+
+```r
+help(package = "OmixM6A")
+```
+
+## Contributing
+
+Contributions to OmixM6A are welcome! Report bugs, suggest features, or contribute code by [creating an issue](https://github.com/your_github_username/OmixM6A/issues) or submitting a pull request.
+
+## License
+
+This package is licensed under the MIT License. See the [LICENSE](https://github.com/your_github_username/OmixM6A/blob/main/LICENSE) file for details.
+
+## Acknowledgments
+
+OmixM6A is developed as part of the m6AConquer project, with the goal of advancing the analysis and understanding of m6A RNA modifications. We appreciate the contributions and feedback from the epitranscriptomics community.
