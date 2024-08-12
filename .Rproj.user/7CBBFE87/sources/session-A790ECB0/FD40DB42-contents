@@ -19,17 +19,17 @@ devtools::install_github("ZW-xjtlu/OmixM6A")
 OmixM6A provides:
 
 - **Advanced Statistical Models**: Fit a range of models, including zero-inflated beta-binomial mixtures, beta-binomial mixtures, binomial mixtures, and binomial-uniform mixtures, to m6A count data.
-- **Flexible Data Handling**: Efficiently analyze both individual count vectors and complex `SummarizedExperiment` objects, allowing for versatile data analysis workflows.
+- **Flexible Data Handling**: Efficiently analyze both individual count vectors and `SummarizedExperiment` objects from m6AConquer database, allowing for versatile data analysis workflows.
 - **Robust Classification and Normalization**: Accurately classify and normalize m6A methylation states, calculating posterior probabilities, p-values, and false discovery rates (FDR).
 - **High-Level Visualization**: Generate visualizations to compare model fits, assess goodness of fit, and interpret the results of different statistical models.
-- **Scalability**: Designed for large-scale m6A datasets, ensuring efficient processing and analysis for epitranscriptome research.
+- **Scalability**: Parameter initiation of models are optimized for large-scale m6A datasets, ensuring efficient processing and analysis for epitranscriptome research with million number of sites / peaks.
 
 ## Key Features
 
-- **Posterior Probability Calculation**: Accurately estimate the posterior probabilities of m6A modification states across biological samples.
-- **P-Value and FDR Calculation**: Generate p-values and false discovery rates to assess the statistical significance of m6A sites.
-- **Model Comparison and Visualization**: Visual tools to compare and evaluate the fit of various statistical models, enhancing interpretability and decision-making.
-- **Versatile Data Processing**: Handle both simple data structures and complex multi-sample datasets within `SummarizedExperiment` objects, making the package adaptable to different research needs.
+- **P-Value and FDR Calculation**: Generate p-values and false discovery rates to assess the statistical significance of m6A sites in site calling.
+- **Posterior Probability Calculation**: Estimate the posterior probabilities of m6A modification states across biological samples using selected statistical models, which are useful as bayes classifier for methylation states or normalized methylation levels across platforms.
+- **Model Comparison and Visualization**: Visual tools to compare and evaluate the fit of various statistical models through multiple metrics, enhancing transparancy in model selection.
+- **Versatile Data Processing**: Handle both simple data structures and multi-sample data framework within `SummarizedExperiment` objects, making the package adaptable to different research needs.
 
 ## Usage
 
@@ -80,4 +80,4 @@ This package is licensed under the MIT License. See the [LICENSE](https://github
 
 ## Acknowledgments
 
-OmixM6A is developed as part of the m6AConquer project, with the goal of advancing the analysis and understanding of m6A RNA modifications. We appreciate the contributions and feedback from the epitranscriptomics community.
+OmixM6A is developed as part of the m6AConquer database project, with the goal of advancing the analysis and understanding of m6A RNA modifications through systematic integration. We appreciate the contributions and feedback from the epitranscriptomics community.
