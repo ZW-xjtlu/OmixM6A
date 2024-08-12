@@ -46,7 +46,7 @@ m6A_se <- readRDS(system.file("extdata", "example_se.rds", package="OmixM6A"))
 m6A_counts <- assays(m6A_se)$m6A[,1]
 total_counts <- assays(m6A_se)$Total[,1]
 
-# Apply OmixM6A to count vectors
+# Apply OmixM6A to count vectors (fitting BBmix/beta-binomial mixture by default)
 result_df <- OmixM6A(m6A_counts, total_counts)
 
 # Display the results
