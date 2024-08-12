@@ -1,6 +1,6 @@
 # OmixM6A
 
-**OmixM6A** offers a comprehensive suite of tools for the analysis and visualization of m6A omics data in R. The package specializes in the site calling, classification and normalization of m6A methylation states within biological samples, providing researchers with the tools needed to conduct high-level analysis in the field of epitranscriptomics.
+**OmixM6A** offers a suite of computational tools for the analysis and visualization of m6A omics data in R. The package specializes in the site calling, classification and normalization of m6A methylation states within quantitative m6A samples, providing researchers with the tools needed to conduct high-level analysis in the field of epitranscriptomics.
 
 ## Installation
 
@@ -11,7 +11,7 @@ Install OmixM6A directly from GitHub:
 install.packages("devtools")
 
 # Install OmixM6A from GitHub
-devtools::install_github("your_github_username/OmixM6A")
+devtools::install_github("ZW-xjtlu/OmixM6A")
 ```
 
 ## Overview
@@ -72,11 +72,11 @@ help(package = "OmixM6A")
 
 ## Contributing
 
-Contributions to OmixM6A are welcome! Report bugs, suggest features, or contribute code by [creating an issue](https://github.com/your_github_username/OmixM6A/issues) or submitting a pull request.
+Contributions to OmixM6A are welcome! Report bugs, suggest features, or contribute code by [creating an issue](https://github.com/ZW-xjtlu/OmixM6A/issues) or submitting a pull request.
 
 ## License
 
-This package is licensed under the MIT License. See the [LICENSE](https://github.com/your_github_username/OmixM6A/blob/main/LICENSE) file for details.
+This package is licensed under the MIT License. See the [LICENSE](https://github.com/ZW-xjtlu/OmixM6A/blob/main/LICENSE) file for details.
 
 ## Acknowledgments
 

@@ -11,7 +11,7 @@ Install OmixM6A directly from GitHub:
 install.packages("devtools")
 
 # Install OmixM6A from GitHub
-devtools::install_github("your_github_username/OmixM6A")
+devtools::install_github("ZW-xjtlu/OmixM6A")
 ```
 
 ## Overview
@@ -72,11 +72,11 @@ help(package = "OmixM6A")
 
 ## Contributing
 
-Contributions to OmixM6A are welcome! Report bugs, suggest features, or contribute code by [creating an issue](https://github.com/your_github_username/OmixM6A/issues) or submitting a pull request.
+Contributions to OmixM6A are welcome! Report bugs, suggest features, or contribute code by [creating an issue](https://github.com/ZW-xjtlu/OmixM6A/issues) or submitting a pull request.
 
 ## License
 
-This package is licensed under the MIT License. See the [LICENSE](https://github.com/your_github_username/OmixM6A/blob/main/LICENSE) file for details.
+This package is licensed under the MIT License. See the [LICENSE](https://github.com/ZW-xjtlu/OmixM6A/blob/main/LICENSE) file for details.
 
 ## Acknowledgments
 
