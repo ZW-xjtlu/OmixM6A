@@ -6,7 +6,7 @@
 #' @param Total A numeric vector of total counts. Must be the same length as `m6A`.
 #' @param se An optional `SummarizedExperiment` object. If provided, the analysis will store results in its assays and metadata.
 #' @param method The method for analysis: "bbmix" for beta-binomial mixture, "bmix" for binomial mixture, "zoibmix" for zero-and-one over-inflated binomial mixture, "zoibbmix" for zero-and-one over inflated beta-binomial mixture, "bumix" for binomial and beta(1,1) mixture. Defaults to "bbmix".
-#' @param bbmix_size An integer specifying the maximum number of sites for the bbmix model. This parameter is for efficiency considerations and only affects the "bbmix" method. The default value is NULL (no subset).
+#' @param bbmix_size An integer specifying the maximum number of sites for the res model. This parameter is for efficiency considerations and only affects the "bbmix" method. The default value is NULL (no subset).
 #' @param cov_threshold An integer specifying a threshold for subsetting sites. Only sites with a total read count greater than or equal to this value are used for model fitting. The default value is 0.
 #'
 #' @return If `se` is provided, returns a modified `SummarizedExperiment` object with added assays and metadata containing analysis results. Otherwise, returns a data frame with analysis results including m6A counts, total counts, beta coefficients, posterior probabilities of foreground (prob_fg), p-values, and false discovery rates (fdr).

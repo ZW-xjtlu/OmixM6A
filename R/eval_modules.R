@@ -33,10 +33,18 @@ extract_bbmixFit <- function(m6A, Total, total_threshold = 30, bbmix_size = NULL
   qtl_fit <- quantile(plot_df$m6A_ratio[plot_df$type != "estimated from data"], qs)
   D <- (2-1)+2*2
   BIC <- D*log(N) - 2*sum(log(prop_bg*dbbinom(m6A[indx], Total[indx], alpha_bg, beta_bg) + prop_fg*dbbinom(m6A[indx], Total[indx], alpha_fg, beta_fg)))
+  pvalue <- rep(NA, N)
+  pvalue[indx] <- pbbinom(m6A[indx]-1, Total[indx],
+                          alpha_bg, beta_bg,
+                          lower.tail = FALSE)
+  m6AProb <- rep(NA, N)
+  m6AProb[indx] <- assays(se_bb)$prob_fg
   return( list(plot_df_qtl = data.frame(qtl_emp = qtl_emp,
-                                          qtl_fit = qtl_fit),
+                                        qtl_fit = qtl_fit),
                plot_df_hist = plot_df,
-               BIC = BIC) )
+               BIC = BIC,
+               pvalue = pvalue,
+               m6AProb = m6AProb) )
 }
 
 extract_bumixFit <- function(m6A, Total, total_threshold = 30){
@@ -70,10 +78,18 @@ extract_bumixFit <- function(m6A, Total, total_threshold = 30){
   qtl_fit <- quantile(plot_df$m6A_ratio[plot_df$type != "estimated from data"], qs)
   D <- (2-1)+1
   BIC <- D*log(N) - 2*sum(log(prop_bg*dbinom(m6A[indx], Total[indx], p_bg) + prop_fg*dbbinom(m6A[indx], Total[indx], 1, 1)))
+  pvalue <- rep(NA, N)
+  pvalue[indx] <- pbinom(m6A[indx]-1, Total[indx],
+                         p_bg,
+                         lower.tail = FALSE)
+  m6AProb <- rep(NA, N)
+  m6AProb[indx] <- assays(se_bu)$prob_fg
   return( list(plot_df_qtl = data.frame(qtl_emp = qtl_emp,
                                          qtl_fit = qtl_fit),
                plot_df_hist = plot_df,
-               BIC = BIC) )
+               BIC = BIC,
+               pvalue = pvalue,
+               m6AProb =  m6AProb) )
 }
 
 extract_bmixFit <- function(m6A, Total, total_threshold = 30){
@@ -107,10 +123,18 @@ extract_bmixFit <- function(m6A, Total, total_threshold = 30){
   qtl_fit <- quantile(plot_df$m6A_ratio[plot_df$type != "estimated from data"], qs)
   D <- (2-1)+2
   BIC <- D*log(N) - 2*sum(log(prop_bg*pmax(dbinom(m6A[indx], Total[indx], p_bg), 1e-100) + prop_fg*pmax(dbinom(m6A[indx], Total[indx], p_fg), 1e-100)))
+  pvalue <- rep(NA, N)
+  pvalue[indx] <- pbinom(m6A[indx]-1, Total[indx],
+                         p_bg,
+                         lower.tail = FALSE)
+  m6AProb <- rep(NA, N)
+  m6AProb[indx] <- assays(se_b)$prob_fg
   return( list(plot_df_qtl = data.frame(qtl_emp = qtl_emp,
                                          qtl_fit = qtl_fit),
                plot_df_hist = plot_df,
-               BIC = BIC) )
+               BIC = BIC,
+               pvalue = pvalue,
+               m6AProb = m6AProb) )
 }
 
 extract_binomialFit <- function(m6A, Total, total_threshold = 30){
@@ -129,10 +153,20 @@ extract_binomialFit <- function(m6A, Total, total_threshold = 30){
   qtl_fit <- quantile(plot_df$m6A_ratio[plot_df$type != "estimated from data"], qs)
   D <- 1
   BIC <- D*log(N) - 2*sum(dbinom(m6A[indx], Total[indx], p, log = TRUE))
+  pvalue <- rep(NA, N)
+  pvalue[indx] <- pbinom(m6A[indx]-1, Total[indx],
+                         p,
+                         lower.tail = FALSE)
+  m6AProb <- rep(NA, N)
+  padj <- p.adjust( pvalue, method = "BH")
+  m6AProb[which(padj < 0.05)] <- 1
+  m6AProb[which(padj > 0.05)] <- 0
   return( list(plot_df_qtl = data.frame(qtl_emp = qtl_emp,
                                         qtl_fit = qtl_fit),
                plot_df_hist = plot_df,
-               BIC = BIC) )
+               BIC = BIC,
+               pvalue = pvalue,
+               m6AProb = m6AProb) )
 }
 
 plot_hist <- function(plot_df, model_name){
@@ -159,10 +193,20 @@ extract_bbFit <- function(m6A, Total, total_threshold = 30){
   qtl_fit <- quantile(plot_df$m6A_ratio[plot_df$type != "estimated from data"], qs)
   D <- 2
   BIC <- D*log(N) - 2*sum(log(dbbinom(m6A[indx], Total[indx], bbfit[1], bbfit[2])))
+  pvalue <- rep(NA, N)
+  pvalue[indx] <- pbbinom(m6A[indx]-1, Total[indx],
+                          bbfit[1], bbfit[2],
+                          lower.tail = FALSE)
+  m6AProb <- rep(NA, N)
+  padj <- p.adjust( pvalue, method = "BH")
+  m6AProb[which(padj < 0.05)] <- 1
+  m6AProb[which(padj > 0.05)] <- 0
   return( list(plot_df_qtl = data.frame(qtl_emp = qtl_emp,
                                         qtl_fit = qtl_fit),
                plot_df_hist = plot_df,
-               BIC = BIC) )
+               BIC = BIC,
+               pvalue = pvalue,
+               m6AProb = m6AProb) )
 }
 
 #' Compare Goodness of Fits for m6A Modification Models

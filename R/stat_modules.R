@@ -175,20 +175,28 @@ fit_bbmix <- function(m6A_vec, Total_vec, subsize = NULL, cov_threshold){
   }
 
   #Update responsibilities on all non-zero sites
+  beta <- rep(NA, length(Total_vec))
+  beta[!indx_zero] <- m6A_vec[!indx_zero]/Total_vec[!indx_zero]
   log_prob_fg <- dbbinom(m6A_vec[!indx_zero], Total_vec[!indx_zero], alpha_fg, beta_fg, log = TRUE) + log(fg_prop)
   log_prob_bg <- dbbinom(m6A_vec[!indx_zero], Total_vec[!indx_zero], alpha_bg, beta_bg, log = TRUE) + log(bg_prop)
   max_log_prob <- pmax(log_prob_fg, log_prob_bg)
   responsibilities <- exp(log_prob_fg - max_log_prob) / (exp(log_prob_fg - max_log_prob) + exp(log_prob_bg - max_log_prob))
   resp_return <- rep(NA, length(Total_vec))
   resp_return[!indx_zero] <- responsibilities
-
   pvalue <- rep(NA, length(Total_vec))
-  pvalue[!indx_zero] <- pbbinom(m6A_vec[!indx_zero]-1, Total_vec[!indx_zero],
-                                alpha_bg, beta_bg,
-                                lower.tail = FALSE)
-
-  beta <- rep(NA, length(Total_vec))
-  beta[!indx_zero] <- m6A_vec[!indx_zero]/Total_vec[!indx_zero]
+  n <- sum(!indx_zero)
+  pval_sub <- numeric(n)  
+  chunk_size <- 100000
+  for (start_i in seq(1, n, by = chunk_size)) {
+    end_i <- min(start_i + chunk_size - 1, n)
+    idx_range <- start_i:end_i
+    pval_sub[idx_range] <- pbbinom(m6A_vec[!indx_zero][idx_range] - 1,
+                                   Total_vec[!indx_zero][idx_range],
+                                   alpha_bg,
+                                   beta_bg,
+                                   lower.tail = FALSE)
+  }
+  pvalue[!indx_zero] <- pval_sub
   output_lst <- list(prob_fg = resp_return,
                      pvalue = pvalue,
                      beta = beta,
