@@ -366,6 +366,7 @@ fit_binomial <- function(m6A_vec, Total_vec, cov_threshold){
   indx_sub <- Total_vec[!indx_zero] >= cov_threshold
   m6A <- m6A_vec[!indx_zero][indx_sub]
   Ns <- Total_vec[!indx_zero][indx_sub]
+  pvalue <- rep(NA, length(Total_vec))
   pvalue[!indx_zero] <- pbinom(m6A_vec[!indx_zero]-1, Total_vec[!indx_zero],
                                sum(m6A)/sum(Ns),
                                lower.tail = FALSE)
