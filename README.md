@@ -49,7 +49,7 @@ total_counts <- assays(m6A_se)$Total[,1]
 # Apply OmixM6A to count vectors (fitting BBmix/beta-binomial mixture)
 result_df <- OmixM6A(m6A_counts, total_counts, method = "bbmix") 
 
-# You can set method = "binomial" to reproduce the binomial test used by default in the m6AConquer database
+# You can set method = "binomial" to reproduce the binomial test used by default in m6AConquer
 # result_df <- OmixM6A(m6A_counts, total_counts, method = "binomial") 
 
 # Display the results
