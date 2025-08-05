@@ -26,7 +26,7 @@ OmixM6A provides:
 
 ## Key Features
 
-- **P-Value Calculation**: Generate p-values to assess the statistical significance of m6A sites in site calling.
+- **P-Value calculation**: Generate p-values to assess the statistical significance of m6A sites in site calling.
 - **Posterior probability calculation**: Estimate the posterior probabilities of m6A modification states across biological samples using selected statistical models, which are useful as bayes classifier for methylation states or normalized methylation levels across platforms.
 - **Model comparison and visualization**: Visual tools to compare and evaluate the fit of various statistical models through multiple metrics, enhancing transparancy in model selection.
 - **Versatile data processing**: Handle both simple data structures and multi-sample data framework within `SummarizedExperiment` objects, making the package adaptable to different research needs.
