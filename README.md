@@ -18,7 +18,7 @@ devtools::install_github("ZW-xjtlu/OmixM6A")
 
 OmixM6A provides:
 
-- **Advanced statistical models**: Fit a range of models, including (zero & one inflated) beta-binomial mixtures, binomial mixtures, and binomial-uniform mixtures, to m6A count data.
+- **Rich set of statistical models**: Fit a range of models, including (zero & one inflated) beta-binomial mixtures, binomial mixtures, and binomial-uniform mixtures, to m6A count data.
 - **Flexible data handling**: Efficiently analyze both individual count vectors and `SummarizedExperiment` objects from m6AConquer database, allowing for versatile data analysis workflows.
 - **Robust classification and normalization**: Accurately classify and normalize m6A methylation states, calculating posterior probabilities and p-values.
 - **High-level visualization**: Generate visualizations to compare model fits, assess goodness of fit, and interpret the results of different statistical models.
@@ -28,8 +28,8 @@ OmixM6A provides:
 
 - **P-Value calculation**: Generate p-values to assess the statistical significance of m6A sites in site calling.
 - **Posterior probability calculation**: Estimate the posterior probabilities of m6A modification states across biological samples using selected statistical models, which are useful as bayes classifier for methylation states or normalized methylation levels across platforms.
-- **Model comparison and visualization**: Visual tools to compare and evaluate the fit of various statistical models through multiple metrics, enhancing transparancy in model selection.
-- **Versatile data processing**: Handle both simple data structures and multi-sample data framework within `SummarizedExperiment` objects, making the package adaptable to different research needs.
+- **Model comparison and visualization**: Compare and evaluate the fit of various statistical models through Q-Q plots, BIC scores, and marginal alignments, enhancing transparency in model selection.
+- **Versatile data processing**: Handle both simple data inputs and m6AConquer data-sharing framework within `SummarizedExperiment` objects, making the package adaptable to different research needs.
 
 ## Usage
 
@@ -46,15 +46,15 @@ m6A_se <- readRDS(system.file("extdata", "example_se.rds", package="OmixM6A"))
 m6A_counts <- assays(m6A_se)$m6A[,1]
 total_counts <- assays(m6A_se)$Total[,1]
 
-# Apply OmixM6A to count vectors (fitting BBmix/beta-binomial mixture by default)
-result_df <- OmixM6A(m6A_counts, total_counts)
+# Apply OmixM6A to count vectors (fitting BBmix/beta-binomial mixture)
+result_df <- OmixM6A(m6A_counts, total_counts, method = "bbmix") #Set method = "binomial" for binomial test used by default in m6AConquer database
 
 # Display the results
 print(result_df)
 
 # Example usage with a SummarizedExperiment object
 # Apply OmixM6A directly to the SummarizedExperiment object
-result_se <- OmixM6A(se = m6A_se)
+result_se <- OmixM6A(se = m6A_se, method = "bbmix")
 
 # Display the results
 print(result_se)
