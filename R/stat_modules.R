@@ -372,12 +372,12 @@ fit_binomial <- function(m6A_vec, Total_vec, cov_threshold){
                                lower.tail = FALSE)
   beta <- rep(NA, length(Total_vec))
   beta[!indx_zero] <- m6A_vec[!indx_zero]/Total_vec[!indx_zero]
-  output_lst <- list(prob_fg = resp_return,
+  output_lst <- list(prob_fg = rep(NA, length(Total_vec)),
                      pvalue = pvalue,
                      beta = beta,
                      para = list(bg_proportion = rep(NA, length(Total_vec)),
                                  fg_proportion = rep(NA, length(Total_vec)),
-                                 p_m6A_bg = p_bg))
+                                 p_m6A_bg = NA))
   return(output_lst)
 }
 
