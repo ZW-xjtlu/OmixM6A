@@ -18,7 +18,7 @@ devtools::install_github("ZW-xjtlu/OmixM6A")
 
 OmixM6A provides:
 
-- **Rich set of statistical models**: Fit a range of models, including (zero & one inflated) beta-binomial mixtures, binomial mixtures, and binomial-uniform mixtures, to m6A count data.
+- **Rich set of statistical models**: Fit a range of models, including (zero & one inflated) beta-binomial mixtures, binomial mixtures, binomial-uniform mixtures, and simple binomial, to m6A count data.
 - **Flexible data handling**: Efficiently analyze both individual count vectors and `SummarizedExperiment` objects from m6AConquer database, allowing for versatile data analysis workflows.
 - **Robust classification and normalization**: Accurately classify and normalize m6A methylation states, calculating posterior probabilities and p-values.
 - **High-level visualization**: Generate visualizations to compare model fits, assess goodness of fit, and interpret the results of different statistical models.
