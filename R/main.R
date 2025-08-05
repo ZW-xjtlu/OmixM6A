@@ -84,7 +84,7 @@ OmixM6A <- function(m6A, Total, se = NULL, method = c("bbmix", "bmix", "zoibbmix
     } else if (method == "bumix"){
       fit <- fit_bumix(m6A, Total, cov_threshold)
     }else if(method == "binomial"){
-      fit_i <- fit_binomial(m6A, Total, cov_threshold)
+      fit <- fit_binomial(m6A, Total, cov_threshold)
     }
    result_tbl <- data.frame(m6A_count = m6A,
                             Total_count = Total,
