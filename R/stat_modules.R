@@ -21,6 +21,7 @@ beta_mom <- function(x, n, w, min_data_points = 10, desired_quantile = 0.75){
   return(c(alpha_mom, beta_mom))
 }
 
+# Weighted MLE of beta-binomial parameters
 BB_WMLE <- function(x, n, w, a, b){
   # Log-likelihood partial derivatives with respect to alpha, beta
   ll.a <- function(a, b, w) sum(w * (digamma(a + b) - digamma(a) + digamma(a + x) - digamma(a + b + n)))

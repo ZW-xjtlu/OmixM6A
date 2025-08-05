@@ -1,4 +1,4 @@
-# The function fits zero & one inflated 2 component binomial mixture and return the fitted parameters together with posterior for foreground
+# The function fits zero inflated 2 component binomial mixture and return the fitted parameters together with posterior for foreground
 fit_zibmix <- function(m6A_vec, Total_vec, cov_threshold){
   indx_zero <- Total_vec == 0
   indx_sub <- Total_vec[!indx_zero] >= cov_threshold
