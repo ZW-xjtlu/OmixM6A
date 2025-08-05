@@ -358,3 +358,25 @@ fit_bumix <- function(m6A_vec, Total_vec, cov_threshold){
   return(output_lst)
 }
 
+
+# The function fits one simple binomial distribution to perform site calling (p-value only)
+fit_binomial <- function(m6A_vec, Total_vec, cov_threshold){
+  #require(extraDistr)
+  indx_zero <- Total_vec == 0
+  indx_sub <- Total_vec[!indx_zero] >= cov_threshold
+  m6A <- m6A_vec[!indx_zero][indx_sub]
+  Ns <- Total_vec[!indx_zero][indx_sub]
+  pvalue[!indx_zero] <- pbinom(m6A_vec[!indx_zero]-1, Total_vec[!indx_zero],
+                               sum(m6A)/sum(Ns),
+                               lower.tail = FALSE)
+  beta <- rep(NA, length(Total_vec))
+  beta[!indx_zero] <- m6A_vec[!indx_zero]/Total_vec[!indx_zero]
+  output_lst <- list(prob_fg = resp_return,
+                     pvalue = pvalue,
+                     beta = beta,
+                     para = list(bg_proportion = rep(NA, length(Total_vec)),
+                                 fg_proportion = rep(NA, length(Total_vec)),
+                                 p_m6A_bg = p_bg))
+  return(output_lst)
+}
+

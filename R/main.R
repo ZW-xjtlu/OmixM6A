@@ -5,7 +5,7 @@
 #' @param m6A A numeric vector of counts for m6A modifications.
 #' @param Total A numeric vector of total counts. Must be the same length as `m6A`.
 #' @param se An optional `SummarizedExperiment` object. If provided, the analysis will store results in its assays and metadata.
-#' @param method The method for analysis: "bbmix" for beta-binomial mixture, "bmix" for binomial mixture, "zoibmix" for zero-and-one over-inflated binomial mixture, "zoibbmix" for zero-and-one over inflated beta-binomial mixture, "bumix" for binomial and beta(1,1) mixture. Defaults to "bbmix".
+#' @param method The method for analysis: "bbmix" for beta-binomial mixture, "bmix" for binomial mixture, "zoibmix" for zero-and-one over-inflated binomial mixture, "zoibbmix" for zero-and-one over inflated beta-binomial mixture, "bumix" for binomial and beta(1,1) mixture, "binomial" for simple binomial test. Defaults to "bbmix".
 #' @param bbmix_size An integer specifying the maximum number of sites for the res model. This parameter is for efficiency considerations and only affects the "bbmix" method. The default value is NULL (no subset).
 #' @param cov_threshold An integer specifying a threshold for subsetting sites. Only sites with a total read count greater than or equal to this value are used for model fitting. The default value is 0.
 #'
@@ -38,7 +38,7 @@
 #' result_se
 #' metadata(result_se) #Check fitted model parameters
 #'
-OmixM6A <- function(m6A, Total, se = NULL, method = c("bbmix", "bmix", "zoibbmix", "zoibmix", "bumix"), bbmix_size = NULL, cov_threshold = 0){
+OmixM6A <- function(m6A, Total, se = NULL, method = c("bbmix", "bmix", "zoibbmix", "zoibmix", "bumix", "binomial"), bbmix_size = NULL, cov_threshold = 0){
   method <- match.arg(method)
   if(!is.null(se)){
   stopifnot(is(se, "SummarizedExperiment"))
@@ -60,6 +60,8 @@ OmixM6A <- function(m6A, Total, se = NULL, method = c("bbmix", "bmix", "zoibbmix
       fit_i <- fit_zoibmix(assays(se)$m6A[,i], assays(se)$Total[,i], cov_threshold)
     }else if(method == "bumix"){
       fit_i <- fit_bumix(assays(se)$m6A[,i], assays(se)$Total[,i], cov_threshold)
+    }else if(method == "binomial"){
+      fit_i <- fit_binomial(assays(se)$m6A[,i], assays(se)$Total[,i], cov_threshold)
     }
     assays(se)$beta[,i] <- fit_i$beta
     assays(se)$prob_fg[,i] <- fit_i$prob_fg
