@@ -47,10 +47,10 @@ m6A_counts <- assays(m6A_se)$m6A[,1]
 total_counts <- assays(m6A_se)$Total[,1]
 
 # Apply OmixM6A to count vectors 
-# By default fitting BBmix/beta-binomial mixture, the posterior prob corresponds to m6AConquer m6A probabilities
+# Set method = "bbmix" to reproduce the beta-binomial mixture m6A posterior probabilities in m6AConquer
 result_df <- OmixM6A(m6A_counts, total_counts, method = "bbmix") 
 
-# You can set method = "binomial" to reproduce the binomial test BH adjusted p-values used by m6AConquer
+# Set method = "binomial" to reproduce the binomial test BH adjusted p-values in m6AConquer
 # result_df <- OmixM6A(m6A_counts, total_counts, method = "binomial") 
 
 # Display the results
