@@ -7,11 +7,13 @@
 Install OmixM6A directly from GitHub:
 
 ```r
-# Install devtools if you haven't already
-install.packages("devtools")
+# Install remotes if you haven't already
+if (!requireNamespace("remotes", quietly = TRUE)) {
+    install.packages("remotes")  # install once if missing
+}
 
 # Install OmixM6A from GitHub
-devtools::install_github("ZW-xjtlu/OmixM6A")
+remotes::install_github("ZW-xjtlu/OmixM6A")
 ```
 
 ## Overview
