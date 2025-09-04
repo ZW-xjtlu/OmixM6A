@@ -73,6 +73,13 @@ Comprehensive documentation for each function is available within the package. A
 help(package = "OmixM6A")
 ```
 
+## Methodological Details
+
+- All mixture models (except for zero & one inflated models) consist of two components: a background (non-m6A) component and a foreground (m6A) component.  
+- The posterior of a mixture model represents the posterior probability (responsibility) that a site belongs to the foreground component.  
+- The p-value of a mixture model is defined as the one-sided p-value evaluated at `1 - CDF(x, total)` of the fitted background distribution, where `x` and `total` denote the observed m6A count and total count at the A site, respectively.  
+- For zero & one inflated models, two additional components corresponding to zero and one are included.  
+
 ## Contributing
 
 Contributions to OmixM6A are welcome! Report bugs, suggest features, or contribute code by [creating an issue](https://github.com/ZW-xjtlu/OmixM6A/issues) or submitting a pull request.
@@ -83,6 +90,7 @@ This package is licensed under the MIT License. See the [LICENSE](https://github
 
 ## Acknowledgments
 
-OmixM6A is developed to be compatible with the m6AConquer database project. 
+OmixM6A is developed to be compatible with the m6AConquer database project. All BH adjusted p-value and m6A probabilities in m6AConquer m6A SE assays can be reproduced from its m6A and Total count assays using method = "binomial" and method = "bbmix" using this package.
+You are encouraged to create your own aggregated (row sums) columns by pooling biological replicates under same conditions and re-fit selected site calling models for integration purpose.
 
 We appreciate the contributions and feedback from the epitranscriptomics community.
