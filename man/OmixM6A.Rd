@@ -8,7 +8,7 @@ OmixM6A(
   m6A,
   Total,
   se = NULL,
-  method = c("bbmix", "bmix", "zoibbmix", "zoibmix", "bumix"),
+  method = c("bbmix", "bmix", "zoibbmix", "zoibmix", "bumix", "binomial"),
   bbmix_size = NULL,
   cov_threshold = 0
 )
@@ -20,7 +20,7 @@ OmixM6A(
 
 \item{se}{An optional `SummarizedExperiment` object. If provided, the analysis will store results in its assays and metadata.}
 
-\item{method}{The method for analysis: "bbmix" for beta-binomial mixture, "bmix" for binomial mixture, "zoibmix" for zero-and-one over-inflated binomial mixture, "zoibbmix" for zero-and-one over inflated beta-binomial mixture, "bumix" for binomial and beta(1,1) mixture. Defaults to "bbmix".}
+\item{method}{The method for analysis: "bbmix" for beta-binomial mixture, "bmix" for binomial mixture, "zoibmix" for zero-and-one over-inflated binomial mixture, "zoibbmix" for zero-and-one over inflated beta-binomial mixture, "bumix" for binomial and beta(1,1) mixture, "binomial" for simple binomial test. Defaults to "bbmix".}
 
 \item{bbmix_size}{An integer specifying the maximum number of sites for the bbmix model. This parameter is for efficiency considerations and only affects the "bbmix" method. The default value is NULL (no subset).}
 
