@@ -27,7 +27,7 @@ OmixM6A(
 \item{cov_threshold}{An integer specifying a threshold for subsetting sites. Only sites with a total read count greater than or equal to this value are used for model fitting. The default value is 0.}
 }
 \value{
-If `se` is provided, returns a modified `SummarizedExperiment` object with added assays and metadata containing analysis results. Otherwise, returns a data frame with analysis results including m6A counts, total counts, beta coefficients, posterior probabilities of foreground (prob_fg), p-values, and false discovery rates (fdr).
+If `se` is provided, returns a modified `SummarizedExperiment` object with added assays and metadata containing analysis results. Otherwise, returns a data frame with analysis results including m6A counts, total counts, beta coefficients, posterior probabilities of foreground (prob_fg), p-values, and BH adjusted p-values (fdr).
 }
 \description{
 This function performs statistical analysis on m6A modification sites using different methods including mixtures of two binomial distributions, beta-binomial distributions, or a mixture of binomial and beta(1,1) distributions. It supports analysis on both individual vectors of counts and `SummarizedExperiment` objects.
@@ -39,7 +39,7 @@ The function calculates several key statistics:
 
 - `pvalue`: The posterior predictive p-value, indicating the probability of observing data as or more extreme than the current data under the fitted background model.
 
-- `fdr`: The adjusted p-value using the Benjamini-Hochberg (BH) approach, which can control the false discovery rate (FDR).
+- `fdr`: The adjusted p-value using the Benjamini-Hochberg (BH) approach, which can control the false discovery rate (fdr).
 
 In case of a `SummarizedExperiment` input, the fitted model parameters are stored in its metadata.
 }
