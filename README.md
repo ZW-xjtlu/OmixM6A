@@ -46,10 +46,11 @@ m6A_se <- readRDS(system.file("extdata", "example_se.rds", package="OmixM6A"))
 m6A_counts <- assays(m6A_se)$m6A[,1]
 total_counts <- assays(m6A_se)$Total[,1]
 
-# Apply OmixM6A to count vectors (fitting BBmix/beta-binomial mixture)
+# Apply OmixM6A to count vectors 
+# By default fitting BBmix/beta-binomial mixture, the posterior prob corresponds to m6AConquer m6A probabilities
 result_df <- OmixM6A(m6A_counts, total_counts, method = "bbmix") 
 
-# You can set method = "binomial" to reproduce the binomial test used by default in m6AConquer
+# You can set method = "binomial" to reproduce the binomial test BH adjusted p-values used by m6AConquer
 # result_df <- OmixM6A(m6A_counts, total_counts, method = "binomial") 
 
 # Display the results
@@ -64,6 +65,10 @@ print(result_se)
 
 # Check fitted model parameters stored in metadata
 metadata(result_se)
+
+# Use the following code to evaluate the goodness of fit of different statistical models
+set.seed(123)
+compareGoodnessOfFits(m6A_counts, total_counts) #Generate BIC scores and Q-Q plots
 ```
 ## Documentation
 
@@ -88,9 +93,12 @@ Contributions to OmixM6A are welcome! Report bugs, suggest features, or contribu
 
 This package is licensed under the MIT License. See the [LICENSE](https://github.com/ZW-xjtlu/OmixM6A/blob/main/LICENSE) file for details.
 
-## Acknowledgments
+## Acknowledgments & Notes
 
-OmixM6A is developed to be compatible with the m6AConquer database project. All BH adjusted p-value and m6A probabilities in m6AConquer m6A SE assays can be reproduced from its m6A and Total count assays using method = "binomial" and method = "bbmix" using this package.
-You are encouraged to create your own aggregated (row sums) columns by pooling biological replicates under same conditions and re-fit selected site calling models for integration purpose.
+OmixM6A is developed to be compatible with the m6AConquer database project. 
+
+All BH-adjusted p-values and m6A posterior probabilities in the m6AConquer SE assays can be fully reproduced from the raw **m6A** and **Total** count assays using this package with `method = "binomial"` or `method = "bbmix"`.  
+
+For integration across replicates, you are encouraged to create your own aggregated columns by pooling biological replicates under the same condition (with `rowSums()`)  and then re-fitting the selected site-calling models.
 
 We appreciate the contributions and feedback from the epitranscriptomics community.
