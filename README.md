@@ -66,9 +66,8 @@ print(result_se)
 # Check fitted model parameters stored in metadata
 metadata(result_se)
 
-# Use the following code to evaluate the goodness of fit of different statistical models
-set.seed(123)
-compareGoodnessOfFits(m6A_counts, total_counts) #Generate BIC scores and Q-Q plots
+# Evaluate the goodness of fits of different statistical models
+compareGoodnessOfFits(m6A_counts, total_counts) #Examine BIC scores and Q-Q plots
 ```
 ## Documentation
 
