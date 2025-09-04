@@ -35,11 +35,11 @@ This function performs statistical analysis on m6A modification sites using diff
 \details{
 The function calculates several key statistics:
 
-- `prob_fg`: The posterior probability of a site being a foreground m6A modification. Useful for classifying sites using a Bayesian classifier approach.
+- `prob_fg`: The posterior probability of a site being a foreground m6A modification. Useful for predicting m6A sites using a Bayesian classifier approach.
 
 - `pvalue`: The posterior predictive p-value, indicating the probability of observing data as or more extreme than the current data under the fitted background model.
 
-- `fdr`: The false discovery rate, adjusting the p-value using the Benjamini-Hochberg (BH) approach.
+- `fdr`: The adjusted p-value using the Benjamini-Hochberg (BH) approach, which can control the false discovery rate (FDR).
 
 In case of a `SummarizedExperiment` input, the fitted model parameters are stored in its metadata.
 }
