@@ -9,7 +9,7 @@
 #' @param bbmix_size An integer specifying the maximum number of sites for the res model. This parameter is for efficiency considerations and only affects the "bbmix" method. The default value is NULL (no subset).
 #' @param cov_threshold An integer specifying a threshold for subsetting sites. Only sites with a total read count greater than or equal to this value are used for model fitting. The default value is 0.
 #'
-#' @return If `se` is provided, returns a modified `SummarizedExperiment` object with added assays and metadata containing analysis results. Otherwise, returns a data frame with analysis results including m6A counts, total counts, beta coefficients, posterior probabilities of foreground (prob_fg), p-values, and BH adjusted p-values (fdr).
+#' @return If `se` is provided, returns a modified `SummarizedExperiment` object with added assays and metadata containing analysis results. Otherwise, returns a data frame with analysis results including m6A counts, total counts, beta values (= m6A/Total), posterior probabilities of foreground (prob_fg), p-values, and BH adjusted p-values (fdr).
 #'
 #' @details
 #' The function calculates several key statistics:
