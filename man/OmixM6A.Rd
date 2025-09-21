@@ -22,7 +22,7 @@ OmixM6A(
 
 \item{method}{The method for analysis: "bbmix" for beta-binomial mixture, "bmix" for binomial mixture, "zoibmix" for zero-and-one over-inflated binomial mixture, "zoibbmix" for zero-and-one over inflated beta-binomial mixture, "bumix" for binomial and beta(1,1) mixture, "binomial" for simple binomial test. Defaults to "bbmix".}
 
-\item{bbmix_size}{An integer specifying the maximum number of sites for the bbmix model. This parameter is for efficiency considerations and only affects the "bbmix" method. The default value is NULL (no subset).}
+\item{bbmix_size}{An integer specifying the maximum number of sites for fitting the model. This parameter is for efficiency considerations and only affects the mixture methods involving beta-binomial. The default value is NULL (no subset).}
 
 \item{cov_threshold}{An integer specifying a threshold for subsetting sites. Only sites with a total read count greater than or equal to this value are used for model fitting. The default value is 0.}
 }
